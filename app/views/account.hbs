@@ -3,6 +3,7 @@
 
 	<div class="span6 dirContainer">
 		<h3>Local Files</h3>
+		<button id="alphabetize" class="btn btn-success">Alphabetize</button>
 		<div id="localFiles" class="dirContent">
 		</div>
 	</div>
@@ -42,7 +43,7 @@
 		var src = $(ui.draggable).data('path');
 		var dstDir = pathStack.pop();
 		if( dstDir === '/' ) {
-			alert( 'You must transfer files into a container.' );	
+			alert( 'You must transfer files into a container.' );
 			return;
 		}
 		var dst = dstDir + src.match(/\/([^/]+)$/)[1];
@@ -108,6 +109,23 @@
 			var path = $(this).data('path');
 			if( path ) refreshLocal(path);
 		});
+
+		$('#alphabetize').click(function(){
+		var mylist = $('.dir-entry');
+		var listitems = mylist.children('a').get();
+		console.log(listitems[0]);
+		listitems.sort(function(a, b) {
+			var compA = $(a).text().toUpperCase();
+			var compB = $(b).text().toUpperCase();
+			return (compA > compB) ? -1 : (compA < compB) ? 1 :0;
+			})
+			$.each(listitems, function(idx, itm) { mylist });
+		})
+
+
+
+
+
 
 		$('#azureStorage').on('click','a',function(){
 			var action = $(this).data('action');
