@@ -110,20 +110,14 @@
 			if( path ) refreshLocal(path);
 		});
 
-		$('#alphabetize').click(function(){
-		var mylist = $('.dir-entry');
-		var listitems = mylist.children('a').get();
-		console.log(listitems[0]);
-		listitems.sort(function(a, b) {
-			var compA = $(a).text().toUpperCase();
-			var compB = $(b).text().toUpperCase();
-			return (compA > compB) ? -1 : (compA < compB) ? 1 :0;
-			})
-			$.each(listitems, function(idx, itm) { mylist });
-		})
 
 
+function sortAlpha(a,b){
+    return a.innerHTML.toLowerCase() > b.innerHTML.toLowerCase() ? 1 : -1;
+};
 
+    $('#alphabetize').click(function(){
+      });
 
 
 

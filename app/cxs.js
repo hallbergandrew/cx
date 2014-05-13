@@ -68,6 +68,7 @@ function getLocalDir( path ) {
     mtime: null, // TODO
     entries: []
   };
+
   if( path.match(/\//g).length > 2 ) dir.entries.push({
     name: '../',
     path: path.replace(/\/[^/]+\/$/,'/'),
@@ -88,6 +89,16 @@ function getLocalDir( path ) {
         mtime: stats.mtime
       } );
   });
+  // dir.entries = dir.entries.sort();
+
+  dir.entries = dir.entries.sort(
+  function(a, b) {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+    return 0;
+  }
+);
+
   return dir;
 }
 
@@ -371,3 +382,4 @@ var opts = require('nomnom')
 
 app.listen( opts.port );
 console.log( 'Listening on port ' + opts.port + '....');
+
